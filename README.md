@@ -1,4 +1,4 @@
-# Tenzies Game
+# TENZI Game
 
 This project was initially created alongside [freeCodeCamp's React Tutorial](https://www.youtube.com/watch?v=bMknfKXIFA8) with the purpose of gaining valuable experience creating and developing React applications.
 

@@ -1,0 +1,41 @@
+# GitHub Action Workflow to implement CI/CD for this React App
+# Will Lint, Test, and Build the web-app code
+# If all checks pass => deploy to the associated gh-pages branch which will kick off another action to deploy
+
+name: Lint, Test, Build, and Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - run: npm ci
+    
+    - run: npm test
+    
+    - run: npm run build --if-present
+    
+    - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist/react-tenzi-game # The folder the action should deploy.

@@ -30,10 +30,14 @@ jobs:
     
     - run: npm ci
     
-    # Test disabled until jest configuration issues resolved
-    # - run: npm test
+    - name: Lint
+      run: npm run lint
+
+    - name: Test
+      run: npm run test
     
-    - run: npm run build --if-present
+    - name: Build
+      run: npm run build --if-present
     
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.0

@@ -1,5 +1,7 @@
-import './Die.css';
+import React from 'react';
+
 import { sides } from '../../data/die-faces';
+import './Die.css';
 
 export default function Die(props) {
     const styles = {

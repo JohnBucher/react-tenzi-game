@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.ca3698c4.css",
-    "main.js": "/static/js/main.cc071583.js",
-    "index.html": "/index.html",
-    "main.ca3698c4.css.map": "/static/css/main.ca3698c4.css.map",
-    "main.cc071583.js.map": "/static/js/main.cc071583.js.map"
+    "main.css": "/react-tenzi-game/static/css/main.ca3698c4.css",
+    "main.js": "/react-tenzi-game/static/js/main.cc071583.js",
+    "index.html": "/react-tenzi-game/index.html",
+    "main.ca3698c4.css.map": "/react-tenzi-game/static/css/main.ca3698c4.css.map",
+    "main.cc071583.js.map": "/react-tenzi-game/static/js/main.cc071583.js.map"
   },
   "entrypoints": [
     "static/css/main.ca3698c4.css",

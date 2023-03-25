@@ -38,6 +38,6 @@ jobs:
     
     - name: Deploy 🚀
       run:
-        git config --global user.email ${{ secrets.EMAIL }}
-        git config --global user.name ${{ secrets.USERNAME }}
+        git config --global --add user.email ${{ secrets.EMAIL }}
+        git config --global --add user.name ${{ secrets.USERNAME }}
         npm run deploy

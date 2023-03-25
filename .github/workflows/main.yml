@@ -37,4 +37,7 @@ jobs:
       run: npm run test
     
     - name: Deploy 🚀
-      run: npm run deploy
+      run:
+        git config --gloabl user.email ${{ secrets.GITHUB_EMAIL }}
+        git config --gloabl user.name ${{ secrets.GITHUB_USERNAME }}
+        npm run deploy

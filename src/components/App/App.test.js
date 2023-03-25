@@ -15,8 +15,8 @@ test('App renders successfully', () => {
   expect(screen).toBeDefined();
 });
 
-test('App renders with expected title: Tenzies', () => {
+test('App renders with expected title: TENZI', () => {
   render(<App />);
 
-  expect(screen.getByText('Tenzies')).toBeInTheDocument();
+  expect(screen.getByText('TENZI')).toBeInTheDocument();
 });

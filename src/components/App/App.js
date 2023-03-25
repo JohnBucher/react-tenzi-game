@@ -8,9 +8,10 @@ export default function App() {
   const [dice, setDice] = React.useState(generateDice());
   const [tenzies, setTenzies] = React.useState(false);
   
-  const [clicks, setClicks] = React.useState(0);
   const [startTime, setStartTime] = React.useState(new Date());
   const [finishMsg, setFinishMsg] = React.useState('');
+
+  const [numberOfPieces, setNumberOfPieces] = React.useState(200);
 
   // When the dice object changes =>
     // Check to see if user has won
@@ -22,6 +23,9 @@ export default function App() {
       setTenzies(true);
       const endTime = new Date();
       const timeElapsed = new Date(endTime - startTime);
+
+      // Wait 5 seconds, and then set react-confetti pieces to 0 to "stop" the animation
+      setTimeout(() => setNumberOfPieces(0), 5000)
 
       saveScore(timeElapsed);
     };
@@ -37,16 +41,16 @@ export default function App() {
     let message = "";
 
     if(score.getUTCFullYear() === 1970 && score.getUTCMonth() === 0 && score.getUTCDate() === 1) {
-      message += `Score =  ${padResultValues(score.getUTCHours())}:${padResultValues(score.getUTCMinutes())}:${padResultValues(score.getUTCSeconds())}. `
+      message += `Score =  ${padResultValues(score.getUTCHours())}:${padResultValues(score.getUTCMinutes())}:${padResultValues(score.getUTCSeconds())}`
 
-      let prevScore = new Date(localStorage.getItem("score"));
+      let prevScore = localStorage.getItem("score") ? new Date(localStorage.getItem("score")) : null;
       if(!prevScore || prevScore > score) {
         localStorage.setItem("score", score);
 
         message += "\nNew High Score!";
       } else {
         message += `\nHigh Score = ` + 
-        `${padResultValues(prevScore.getUTCHours())}:${padResultValues(prevScore.getUTCMinutes())}:${padResultValues(prevScore.getUTCSeconds())}.`
+        `${padResultValues(prevScore.getUTCHours())}:${padResultValues(prevScore.getUTCMinutes())}:${padResultValues(prevScore.getUTCSeconds())}`
       }
     } else {
       message += "It took you longer than a day to complete. Try again!";
@@ -82,13 +86,12 @@ export default function App() {
       setTenzies(false)
       setDice(generateDice())
       setStartTime(new Date())
-      setClicks(0)
+      setNumberOfPieces(200)
     } else {
       setDice(prevDice => prevDice.map(die => {
         if(!die.isHeld) die.value = Math.ceil(Math.random() * 6);
         return die;
       }));
-      setClicks(prevClicks => prevClicks + 1);
     }
   }
 
@@ -100,11 +103,13 @@ export default function App() {
     }))
   }
 
+  let scoreTextStyle = { "fontSize": "20px", "fontWeight": "bold", "color": "#59E391" }
+
   return (
     <div className="app-container">
-      {tenzies && <Confetti />}
+      {tenzies && <Confetti numberOfPieces={numberOfPieces} />}
       <div className="content-container">
-        <h1 className='title'>Tenzies</h1>
+        <h1 className='title'>TENZI</h1>
         <p className='instructions'>Roll until all dice are the same. Click each die to freeze
         it at its current value between rolls</p>
 
@@ -117,7 +122,7 @@ export default function App() {
         </div>
 
         <div className='score-container'>
-          {tenzies && <Text>{finishMsg}</Text>}
+          {tenzies && <Text style={ scoreTextStyle }>{finishMsg}</Text>}
         </div>
       </div>
     </div>

@@ -1,0 +1,25 @@
+.contact-container {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 5%;
+    font-size: 24px;
+    align-items: center;
+}
+
+.name {
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+}
+
+.links {
+    margin-left: auto;
+    margin-right: 5px;
+}
+
+.icon {
+    color: #007bff;
+}

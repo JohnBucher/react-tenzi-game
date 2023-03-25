@@ -1,8 +1,11 @@
 import React from 'react';
-import './App.css';
-import Die from '../Die/Die';
 import Confetti from 'react-confetti';
 import { Text } from 'react-native';
+
+import Die from '../Die/Die';
+import Contact from '../Contact/Contact';
+
+import './App.css';
 
 export default function App() {
   const [dice, setDice] = React.useState(generateDice());
@@ -109,6 +112,8 @@ export default function App() {
     <div className="app-container">
       {tenzies && <Confetti numberOfPieces={numberOfPieces} />}
       <div className="content-container">
+        <Contact />
+
         <h1 className='title'>TENZI</h1>
         <p className='instructions'>Roll until all dice are the same. Click each die to freeze
         it at its current value between rolls</p>
